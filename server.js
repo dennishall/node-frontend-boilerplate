@@ -2,6 +2,7 @@
 // if using google analytics, set this value to the actual value.
 var googleAnalyticsSiteId = 'UA-XXXXX-X';
 
+var isDebug = true;
 
 process.title = 'node-dummy';
 process.addListener('uncaughtException', function (err, stack) {
@@ -10,31 +11,32 @@ process.addListener('uncaughtException', function (err, stack) {
 });
 
 
+// considered dirty, but hot-fixes connect-assetmanager :: require('step')
+require.paths.push(__dirname + "/lib");
+// ...  and 'mime'
+require.paths.push(__dirname + "/lib/express/support");
 
-// run setup for non-system libs, then resolve dependencies
-require(__dirname + "/lib/setup")
-   .ext(__dirname + "/lib")
-   .ext(__dirname + "/lib/express/support");
 
-var connect = require('connect'),
-    express = require('express'),
+var connect = require('./lib/express/support/connect'),
+    express = require('./lib/express'),
     sys = require('sys'),
     fs = require('fs'),
-    //io = require('Socket.IO-node'), //replaced with SocketServer
     SocketServer = require('./lib/socket-server'),
-    port = process.env.PORT || 8081,
-    assetManager = require('connect-assetmanager'),
-    assetHandler = require('connect-assetmanager-handlers'),
-    DummyHelper = require('./lib/dummy-helper'),
+    port = 80, //process.env.PORT || 80,
+    assetManager = require('./lib/connect-assetmanager'),
+    assetHandler = require('./lib/connect-assetmanager-handlers'),
+    DummyHelper  = require('./lib/dummy-helper'),
     assets = assetManager({
         'js': {
             'route': /\/static\/js\/[0-9]+\/.*\.js/
             , 'path': './public/js/'
             , 'dataType': 'js'
+            , 'debug' : isDebug
             , 'files': [
-                'http://cdn.socket.io/stable/socket.io.js'
-                , 'http://code.jquery.com/jquery-latest.js'
-                , '*'
+                //'http://cdn.socket.io/stable/socket.io.js'
+                //, 'http://code.jquery.com/jquery-latest.js'
+                '*'
+                , 'lib/socket.io.js'
                 , 'jquery.client.js'
                 , 'jquery.frontend-development.js'
             ]
@@ -49,7 +51,7 @@ var connect = require('connect'),
                     }
                 ]
             }
-            , 'postManipulate': {
+            , 'postManipulate': isDebug ? null : {
                 '^': [
                     assetHandler.uglifyJsOptimize
                     , function (file, path, index, isLast, callback) {
@@ -63,6 +65,7 @@ var connect = require('connect'),
             'route': /\/static\/css\/[0-9]+\/.*\.css/
             , 'path': './public/css/'
             , 'dataType': 'css'
+            , 'debug' : isDebug
             , 'files': [
                 'reset.css'
                 , '*' // oh, AND **EVERYTHING**?
@@ -80,7 +83,7 @@ var connect = require('connect'),
                     , assetHandler.replaceImageRefToBase64(__dirname + '/public')
                 ]
             }
-            , 'postManipulate': {
+            , 'postManipulate': isDebug ? null : {
                 '^': [
                     assetHandler.yuiCssOptimize
                     , function (file, path, index, isLast, callback) {
@@ -97,7 +100,12 @@ var connect = require('connect'),
 
 // instantiate and set up the server. (which is the preferred name, "app" or "server"?)
 
-var app = module.exports = express.createServer();
+var app = module.exports = express.createServer(
+    connect.logger({ format: ':req[x-real-ip]\t:status\t:method\t:url\t' })
+    , connect.bodyParser()
+    , assets
+    , connect.static(__dirname)
+);
 
 app.configure(function() {
     
@@ -108,12 +116,9 @@ app.configure(function() {
     // Optional since express defaults to CWD/views
     app.set('views', __dirname + '/views');
     
-    app.use(connect.conditionalGet());
-    app.use(connect.bodyDecoder());
-    app.use(connect.logger({ format: ':req[x-real-ip]\t:status\t:method\t:url\t' }));
-    app.use(assets);
-    app.use(connect.staticProvider(__dirname + '/public'));
-
+    app.settings.port = port;
+    app.settings.googleAnalyticsSiteId = googleAnalyticsSiteId;
+    
 });
 
 app.dynamicHelpers({
@@ -123,10 +128,21 @@ app.dynamicHelpers({
 });
 
 // Examples
+
+app.get('/', function(req, res) {
+    res.header('X-UA-Compatible','IE=edge,chrome=1');
+    res.render('index', {locals:{
+        port: port
+        , googleAnalyticsSiteId: googleAnalyticsSiteId
+    }});
+});
+
 app.get('/your-page/', function(req, res) {
     res.header('X-UA-Compatible','IE=edge,chrome=1');
     res.render('index', {locals:{
-        key: 'value'
+        title: 'testing'
+        , port: port
+        , googleAnalyticsSiteId: googleAnalyticsSiteId
     }});
 });
 

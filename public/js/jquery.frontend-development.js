@@ -1,8 +1,11 @@
 (function ($) {
-
+    
     var currentPath = location.href.replace(new RegExp('https?://' + window.location.host, ''), ''); // how about location.pathname?
+    console.log('currentPath', currentPath);
     var doReload = true;
-
+    var isShowOverlay = $.cookie('do') === 'true';
+    var $toolbar = $('<div id="frontend-development"></div>').appendTo('body');
+    
     function doMoveAjax(url) {
         if (url) {
             $.ajax({
@@ -18,8 +21,6 @@
             });
         }
     }
-    
-    var isShowOverlay = $.cookie('do') === 'true';
     
     (function reload($) {
         $.ajax({
@@ -50,14 +51,15 @@
             }
         });
     })($);
-    var $toolbar = $('<div id="frontend-development"></div>').appendTo('body');
-
+    
     // sync button
     $('<div title="Sync all browsers to this page" class="sync">S</div>').click(function () {
         doMoveAjax(currentPath);
     }).appendTo($toolbar);
 
-    var $validationResults = $('<div title="Validate html" class="validate">V</div>').click(function () {
+    /*
+    var $validationResults = $('<div title="Validate html" class="validate">V</div>').appendTo($toolbar);
+    $validationResults.click(function () {
         var originSrc = $(this).html();
         $validationResults.html('<div class="loading"></div>');
         var pulseInterval;
@@ -74,7 +76,7 @@
                     }
                     , 'success': function (html) {
                         $validationResults.unbind('click');
-
+                        
                         if (html === 'ok') {
                             $validationResults.html(originSrc).addClass('ok');
                         } else {
@@ -93,7 +95,7 @@
                             pulseInterval = setInterval(function() {
                                 $validationResults.stop().animate({'opacity': 0.3}, 500).animate({'opacity': 1}, 500);
                             }, 1000);
-
+                            
                             $validationResults.bind('click', function() {
                                 $('.validation-errors').remove();
                                 clearInterval(pulseInterval);
@@ -108,7 +110,8 @@
                 });
             }
         });
-    }).appendTo($toolbar).click();
+    }).click();
+    */
 
     $('<div title="Toggle overlay" class="toggle-overlay">O</div>').click(function () {
         $.cookie('do', isShowOverlay ? 'false' : 'true', {'path': '/'});

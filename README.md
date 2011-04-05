@@ -22,3 +22,7 @@ node-express-boilerplate is a collection of neat things that makes prototyping d
     npm install express
     npm install ejs
     npm install socket.io
+    ### mape forgot to mention these:
+    npm install step
+    npm install request
+    npm install uglify-js

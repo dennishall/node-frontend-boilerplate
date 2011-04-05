@@ -18,6 +18,10 @@
 	path = lib/connect-assetmanager-handlers
 	url = http://github.com/mape/connect-assetmanager-handlers.git
 
-[submodule "lib/html5-boilderplate"]
-	path = lib/html5-boilderplate
-	url = https://github.com/paulirish/html5-boilerplate.git
+[submodule "lib/step"]
+	path = lib/step
+	url = git://github.com/creationix/step.git
+
+[submodule "lib/uglify-js"]
+	path = lib/uglify-js
+	url = git://github.com/mishoo/UglifyJS.git
