@@ -1,0 +1,117 @@
+::-moz-selection {
+	background-color: rgba(0,0,0,0.6);
+}
+
+::selection {
+	background-color: rgba(0,0,0,0.6);
+}
+html
+{
+	height: 100%;
+	gradient: purple_yellow;
+}
+body
+{
+	height: 100%;
+	-vendor-box-sizing: border-box;
+	background: data-url(/img/bg.png);
+	color: #000;
+	margin: 0;
+	font: 12px 'helvetica neue', helvetica, arial, sans-serif;
+	text-rendering: optimizeLegibility;
+}
+a
+{
+	color: #000;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+h1,h2
+{
+	font-weight: bold;
+	-vendor-text-shadow: 1px 1px 0 rgba(255,255,255,0.4), 0 0 15px rgba(0,0,0,0.4);
+}
+h1
+{
+	color: #111;
+	font-size: 26px;
+}
+h2
+{
+	position: absolute;
+	top: -70px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 50px;
+	color: #fff;
+	letter-spacing: 6px;
+}
+h3
+{
+	font-size: 17px;
+	margin: 0 0 6px;
+	font-weight: bold;
+	color:#000;
+	-vendor-text-shadow: 1px 1px 0 rgba(255,255,255,0.2), 0 0 15px rgba(0,0,0,0.4);
+}
+hr
+{
+	border: 0;
+	border-top: 1px solid rgba(0,0,0,0.3);
+	border-bottom: 1px solid rgba(255,255,255,0.3);
+	display: block;
+	margin: 10px 0;
+}
+strong
+{
+	font-weight: bold;
+}
+p
+{
+	line-height: 1.4;
+}
+ul
+{
+	padding: 4px 0 0px 15px;
+}
+li
+{
+	list-style: outside;
+	padding: 5px 0;
+	line-height: 1.4;
+}
+#page-container
+{
+	width: 550px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -165px 0 0 -315px;
+	border: 1px rgba(255,255,255,0.3) solid;
+	gradient: rgba(255,255,255,0.5)_rgba(255,255,255,0.1);
+	-vendor-box-shadow: 0px 0px 15px rgba(0,0,0,0.3), 0px 0px 10px rgba(0,0,0,0.2) inset;
+	padding: 12px 15px;
+	-vendor-border-radius: 10px;
+}
+#dummy-links a
+{
+	color: #000;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	gradient: #292929_#111;
+	border: 1px solid #222;
+	-vendor-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.5) inset, 1px 1px 0px #666 inset;
+	-vendor-border-radius: 5px;
+	font-size: 11px;
+	line-height: 24px;
+	text-align: center;
+	cursor: pointer;
+	padding: 0px 10px;
+	display: inline-block;
+	position: relative;
+	margin: 0 0 0 14px;
+}
