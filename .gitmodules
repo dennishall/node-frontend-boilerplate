@@ -1,24 +1,23 @@
 [submodule "lib/Socket.IO"]
-    path = lib/Socket.IO
-    url = http://github.com/LearnBoost/Socket.IO.git
+	path = lib/Socket.IO
+	url = http://github.com/LearnBoost/Socket.IO.git
 
 [submodule "lib/Socket.IO-node"]
-    path = lib/Socket.IO-node
-    url = http://github.com/LearnBoost/Socket.IO-node.git
+	path = lib/Socket.IO-node
+	url = http://github.com/LearnBoost/Socket.IO-node.git
 
 [submodule "lib/express"]
-    path = lib/express
-    url = http://github.com/visionmedia/express.git
-
-[submodule "lib/html5-boilerplate"]
-    path = lib/html5-boilerplate
-    url = http://github.com/robrighter/html5-boilerplate.git
+	path = lib/express
+	url = http://github.com/visionmedia/express.git
 
 [submodule "lib/connect-assetmanager"]
-    path = lib/connect-assetmanager
-    url = http://github.com/mape/connect-assetmanager.git
+	path = lib/connect-assetmanager
+	url = http://github.com/mape/connect-assetmanager.git
 
 [submodule "lib/connect-assetmanager-handlers"]
-    path = lib/connect-assetmanager-handlers
-    url = http://github.com/mape/connect-assetmanager-handlers.git
+	path = lib/connect-assetmanager-handlers
+	url = http://github.com/mape/connect-assetmanager-handlers.git
 
+[submodule "lib/html5-boilderplate"]
+	path = lib/html5-boilderplate
+	url = https://github.com/paulirish/html5-boilerplate.git
