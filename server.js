@@ -51,9 +51,13 @@ var connect = require('./lib/express/support/connect'),
                     }
                 ]
             }
-            , 'postManipulate': isDebug ? null : {
+            , 'postManipulate': {
                 '^': [
-                    assetHandler.uglifyJsOptimize
+                    (isDebug ?
+                        function(file,path,index,isLast,callback){callback(file);}
+                        :
+                        assetHandler.uglifyJsOptimize
+                    )
                     , function (file, path, index, isLast, callback) {
                         callback(file);
                         dummyTimestamps.content = Date.now();
@@ -67,7 +71,8 @@ var connect = require('./lib/express/support/connect'),
             , 'dataType': 'css'
             , 'debug' : isDebug
             , 'files': [
-                'reset.css'
+                //'reset.css'
+                'style.css'
                 , '*' // oh, AND **EVERYTHING**?
                 , 'frontend-development.css' // oh, AND ANOTHER ONE?
             ]
@@ -83,9 +88,13 @@ var connect = require('./lib/express/support/connect'),
                     , assetHandler.replaceImageRefToBase64(__dirname + '/public')
                 ]
             }
-            , 'postManipulate': isDebug ? null : {
+            , 'postManipulate': /* isDebug ? null : */ {
                 '^': [
-                    assetHandler.yuiCssOptimize
+                    (isDebug ?
+                        function(file,path,index,isLast,callback){callback(file);}
+                        :
+                        assetHandler.yuiCssOptimize
+                    )
                     , function (file, path, index, isLast, callback) {
                         callback(file);
                         dummyTimestamps.css = Date.now();

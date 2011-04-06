@@ -36,7 +36,8 @@
                         location.reload(true);
                     }, 200);
                 } else {
-                    if (text && currentPath !== text) {
+                    // added typeof text == 'string' because firefox was getting [object XMLDocument]
+                    if (text && currentPath !== text && typeof text == 'string') {
                         doReload = false;
                         location = text;
                     }
@@ -121,17 +122,17 @@
     var $overlay = $('#dummy-overlay');
     if (!isShowOverlay) {
         if ($overlay.length) {
-            if ($overlay.attr('style').match(/-center/)) {
-                $overlay.addClass('center');
+            if ($overlay.find('div').attr('style').match(/-center/)) {
+                $overlay.find('div').addClass('dummy-overlay-bg-center');
             }
             $('html').live('click', function() {
                 if (toggleAnimation) {
                     clearInterval(toggleAnimation);
                 }
-                $overlay.toggle();
+                $overlay.find('div').toggle();
             });
             var toggleAnimation = setInterval(function() {
-                $overlay.toggle();
+                $overlay.find('div').toggle();
             }, 200);
         }
     } else {

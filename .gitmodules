@@ -25,3 +25,9 @@
 [submodule "lib/uglify-js"]
 	path = lib/uglify-js
 	url = git://github.com/mishoo/UglifyJS.git
+[submodule "lib/html5-boilerplate"]
+	path = lib/html5-boilerplate
+	url = http://github.com/paulirish/html5-boilerplate.git
+[submodule "lib/request"]
+	path = lib/request
+	url = git://github.com/mikeal/request.git

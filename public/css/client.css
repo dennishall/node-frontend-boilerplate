@@ -5,99 +5,79 @@
 ::selection {
 	background-color: rgba(0,0,0,0.6);
 }
-html
-{
+html {
 	height: 100%;
-	gradient: purple_yellow;
+	/*gradient: purple_yellow;*/
+	/** /gradient: #4693A3_#008;/**/
+	/*BSOD:* /gradient: #00a_#00a;/**/
+	/**/gradient: cyan_purple;/**/
 }
-body
-{
+body {
 	height: 100%;
 	-vendor-box-sizing: border-box;
-	background: data-url(/img/bg.png);
+	/**/background: data-url(/img/bg.png);/**/
 	color: #000;
 	margin: 0;
 	font: 12px 'helvetica neue', helvetica, arial, sans-serif;
 	text-rendering: optimizeLegibility;
 }
-a
-{
+a {
 	color: #000;
 }
-a:hover
-{
+a:hover {
 	text-decoration: underline;
 }
-h1,h2
-{
+h1,h2 {
 	font-weight: bold;
 	-vendor-text-shadow: 1px 1px 0 rgba(255,255,255,0.4), 0 0 15px rgba(0,0,0,0.4);
 }
-h1
-{
-	color: #111;
-	font-size: 26px;
-}
-h2
-{
-	position: absolute;
-	top: -70px;
-	left: 0;
-	width: 100%;
+h1 {
 	text-align: center;
 	font-size: 50px;
 	color: #fff;
 	letter-spacing: 6px;
+	padding: 40px 0;
 }
-h3
-{
+h2 {
+	color: #111;
+	font-size: 26px;
+}
+h3 {
 	font-size: 17px;
 	margin: 0 0 6px;
 	font-weight: bold;
 	color:#000;
 	-vendor-text-shadow: 1px 1px 0 rgba(255,255,255,0.2), 0 0 15px rgba(0,0,0,0.4);
 }
-hr
-{
+hr {
 	border: 0;
 	border-top: 1px solid rgba(0,0,0,0.3);
 	border-bottom: 1px solid rgba(255,255,255,0.3);
 	display: block;
 	margin: 10px 0;
 }
-strong
-{
+strong {
 	font-weight: bold;
 }
-p
-{
+p {
 	line-height: 1.4;
 }
-ul
-{
+ul {
 	padding: 4px 0 0px 15px;
 }
-li
-{
+li {
 	list-style: outside;
 	padding: 5px 0;
 	line-height: 1.4;
 }
-#page-container
-{
-	width: 550px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -165px 0 0 -315px;
+#page-container {
 	border: 1px rgba(255,255,255,0.3) solid;
-	gradient: rgba(255,255,255,0.5)_rgba(255,255,255,0.1);
+	gradient: rgba(255,255,255,0.8)_rgba(255,255,255,0.5);
 	-vendor-box-shadow: 0px 0px 15px rgba(0,0,0,0.3), 0px 0px 10px rgba(0,0,0,0.2) inset;
-	padding: 12px 15px;
+	padding: 30px 50px;
 	-vendor-border-radius: 10px;
 }
-#dummy-links a
-{
+#dummy-links a {
 	color: #000;
 	text-decoration: none;
 	outline: none;

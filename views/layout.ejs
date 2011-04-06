@@ -10,12 +10,13 @@
     <!-- CSS : implied media="all" -->
     <link rel="stylesheet" href="/static/css/<%=cacheTimeStamps.css%>/style.css">
     <!-- Uncomment if you are specifically targeting less enabled mobile browsers
-    <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
+    <link rel="stylesheet" media="handheld" href="/public/css/handheld.css?v=2">  -->
     <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
     <script src="/public/js/lib/modernizr-1.7.min.js"></script>
 </head>
 <body>
     <div id="container">
+        <% if(0) { %>
         <header>
             <nav>
                 <ul>
@@ -28,11 +29,13 @@
                 </ul>
             </nav>
         </header>
+        <% } %>
         
         <div id="main">
             <%- body %>
         </div>
         
+        <% if(0) { %>
         <footer>
             <ul>
                 <!-- consider replacing with a partial -->
@@ -42,6 +45,7 @@
                 <li><a href="#">footer link</a></li>
             </ul>
         </footer>
+        <% } %>
     </div> <!--! end of #container -->
     
     <!-- Javascript at the bottom for fast page loading -->
